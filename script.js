@@ -1,7 +1,8 @@
 let valueId;
 let turn = 'x';
 let arrHum = [], arrMac = [], validar = [];
-let player, coincidentes = 0;
+let player, coincidentes = 0, ganador;
+let victoriasH = 0, victoriasM = 0;
 
 const possibleCombinations = [
     [1, 2, 3], 
@@ -15,6 +16,7 @@ const possibleCombinations = [
     ];
 
 let clickScreen = document.querySelectorAll('.cell');
+
 function listening() {
     for(let i = 0; i<clickScreen.length; i++){
         clickScreen[i].addEventListener("click",function () {
@@ -40,6 +42,7 @@ function humanPlayer() {
     if(arrHum.length>2){
         validar = arrHum;
         player = 'el humano';
+        ganador = 1;
         validate();
 
 
@@ -54,6 +57,7 @@ function machinePlayer() {
     if(arrMac.length>2){
         validar = arrMac;
         player = 'la maquina';
+        ganador = 0;
         validate();
 
     }
@@ -68,7 +72,21 @@ function validate() {
             if (validar[k] == possibleCombinations[j][0] || validar[k] == possibleCombinations[j][1] || validar[k] == possibleCombinations[j][2]) {
                 coincidentes++;
                 if (coincidentes>2) {
-                    console.log(`Gano ${player}`);   
+                    console.log(`Gano ${player}`);
+                    if (ganador) {
+                        victoriasH++;
+                        document.getElementById(`marker-X`).innerHTML = victoriasH;
+                    }else{
+                        victoriasM++;
+                        document.getElementById(`marker-O`).innerHTML = victoriasM;
+                    }
+                    arrHum = [];
+                    arrMac = [];
+                    
+
+
+                    
+
                     
                 }
             }
@@ -77,8 +95,14 @@ function validate() {
     
 }
 
+function reset() {
+    for(let p = 1; p<10; p++){
+        document.getElementById(`${p}`).innerHTML = "";
+    }    
+}
 
 
+document.getElementById(`restart`).addEventListener("click", reset);
 listening();
 
 

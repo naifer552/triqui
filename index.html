@@ -3,49 +3,30 @@
 <head>
 	<meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
-	<title>Tic Tac Toe</title>
+	<title>TRIQUI</title>
 </head>
-<body>
-	<div class="content">
-		<h1>Triqui</h1>
-
-		<div class="marker">
-			<div class="marker-item">
-				<div class="header">H = X</div>
-				<span id="marker-X">0</span>
-			</div>
-			<div class="marker-item">
-				<div class="header">M = O</div>
-				<span id="marker-O">0</span>
-			</div>
+	<body>
+		<div class="content">
+			<h1>Triqui</h1>
+			<table id="board">
+				<tr>
+					<td value="1" class="cell" id="1"></td>
+					<td value="2" class="cell" id="2"></td>
+					<td value="3" class="cell" id="3"></td>
+				</tr>
+				<tr>
+					<td value="4" class="cell" id="4"></td>
+					<td value="5" class="cell" id="5"></td>
+					<td value="6" class="cell" id="6"></td>
+				</tr>
+				<tr>
+					<td value="7" class="cell" id="7"></td>
+					<td value="8" class="cell" id="8"></td>
+					<td value="9" class="cell" id="9"></td>
+				</tr>
+			</table>
+			<button id="restart">Restart</button>
 		</div>
-
-
-		<table id="board">
-			<tr>
-				<td value="1" class="cell" id="1"></td>
-				<td value="2" class="cell" id="2"></td>
-				<td value="3" class="cell" id="3"></td>
-			</tr>
-			<tr>
-				<td value="4" class="cell" id="4"></td>
-				<td value="5" class="cell" id="5"></td>
-				<td value="6" class="cell" id="6"></td>
-			</tr>
-			<tr>
-				<td value="7" class="cell" id="7"></td>
-				<td value="8" class="cell" id="8"></td>
-				<td value="9" class="cell" id="9"></td>
-			</tr>
-		</table>
-
-		<div id="result"></div>
-		<button id="restart">Restart</button>
-	</div>
-    <script src="script.js"></script>
-
-		
-
-
-</body>
+		<script src="script.js"></script>
+	</body>
 </html>
