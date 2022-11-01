@@ -1,7 +1,8 @@
-let valueId;
+let valueId, indexEliminar;
 let turn = 'x';
 let arrHum = [], arrMac = [], validar = [];
 let player, coincidentes = 0;
+arrOriginal = [1,2,3,4,5,6,7,8,9];
 
 const possibleCombinations = [
     [1, 2, 3], 
@@ -20,11 +21,16 @@ function listening() {
         clickScreen[i].addEventListener("click",function () {
             valueId = this.id;
             valueId = parseInt(valueId)
-            if (turn === 'x') {
+            if (arrOriginal.includes(valueId)) {
                 humanPlayer();
+
+                
+            }else if(arrOriginal.length>0){
+                alert('Ingrese por favor un valor valido');
             }else{
-                machinePlayer();
+                alert('El juego a terminado');
             }
+
 
         });
 
@@ -32,11 +38,14 @@ function listening() {
 }
 
 function humanPlayer() {
-    turn = 'o';
+
     document.getElementById(`${valueId}`).innerHTML = "X";
     arrHum.push(valueId);
     arrHum.sort();
-    console.log(arrHum)
+    indexEliminar = arrOriginal.indexOf(valueId)
+    arrOriginal.splice(indexEliminar, 1);
+    console.log(arrHum);
+    console.log(arrOriginal);
     if(arrHum.length>2){
         validar = arrHum;
         player = 'el humano';
@@ -44,13 +53,17 @@ function humanPlayer() {
 
 
     }
+    machinePlayer();
 }
 function machinePlayer() {
-    turn = 'x';
+    valueId = arrOriginal[Math.floor(Math.random() * arrOriginal.length)];
     document.getElementById(`${valueId}`).innerHTML = "O";
     arrMac.push(valueId);
     arrMac.sort();
-    console.log(arrMac)
+    indexEliminar = arrOriginal.indexOf(valueId)
+    arrOriginal.splice(indexEliminar, 1);
+    console.log(arrMac);
+    console.log(arrOriginal);
     if(arrMac.length>2){
         validar = arrMac;
         player = 'la maquina';
@@ -68,8 +81,8 @@ function validate() {
             if (validar[k] == possibleCombinations[j][0] || validar[k] == possibleCombinations[j][1] || validar[k] == possibleCombinations[j][2]) {
                 coincidentes++;
                 if (coincidentes>2) {
-                    console.log(`Gano ${player}`);   
-                    
+                    console.log(`Gano ${player}`);
+                    arrOriginal = [];  
                 }
             }
         }
