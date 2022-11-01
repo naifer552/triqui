@@ -1,7 +1,7 @@
 let valueId;
 let turn = 'x';
 let arrHum = [], arrMac = [], validar = [];
-let player;
+let player, coincidentes = 0;
 
 const possibleCombinations = [
     [1, 2, 3], 
@@ -61,12 +61,17 @@ function machinePlayer() {
 }
 
 function validate() {
+    
     for(let j = 0; j<possibleCombinations.length; j++){
-        if (validar[1] == possibleCombinations[j][1] && validar[2] == possibleCombinations[j][2] && validar[3] == possibleCombinations[j][3]) {
-            console.log(`Gano ${player}`);        
-
-
-            
+        coincidentes = 0;
+        for(let k = 0; k<validar.length;k++){
+            if (validar[k] == possibleCombinations[j][0] || validar[k] == possibleCombinations[j][1] || validar[k] == possibleCombinations[j][2]) {
+                coincidentes++;
+                if (coincidentes>2) {
+                    console.log(`Gano ${player}`);   
+                    
+                }
+            }
         }
     }
     
